@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <% for(let chat of chats){  %>
+        <div class="box">
+            <p id="name"><span>Name:</span><%= chat.name %></p>
+          
+            <img src="<%= chat.image %>" alt="User Photo">
+            <p id="msg"><span>Message:</span><%= chat.message %></p>
+        </div>
+     
+   <%  }  %>
+</body>
+</html>
