@@ -16,8 +16,15 @@
           
             <img src="<%= chat.image %>" alt="User Photo">
             <p id="msg"><span>Message:</span><%= chat.message %></p>
+            <form action="/home/<%= chat._id %>/edit" method="GET">
+                <button>  Edit Message</button>
+              </form>
+              <form  action="/home/<%= chat._id %>?_method=DELETE" method="POST">
+                <button>Delete chat</button>
+            </form>
           
         </div>
+       
      
    <%  }  %>
 </body>

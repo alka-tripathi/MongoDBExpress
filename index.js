@@ -6,6 +6,11 @@ const port=8080;
 //use to parse the data
 app.use(express.urlencoded({ extended: true }));
 
+//for put and delete request
+const methodOverride = require("method-override");
+app.use(methodOverride("_method"));
+
+
 // app.use(express.static("public"));
 
 //requiring views folder for ejs files
@@ -66,5 +71,30 @@ app.post("/home",(req,res)=>{
     .catch((err)=>{
         console.log("error is:" +err);
     })
+    res.redirect("/home");
+})
+
+
+//get request to open the message
+app.get("/home/:id/edit",async(req,res)=>{
+    let {id}=req.params;
+    let editchat =  await Chat.findById(id);
+    res.render("edit.ejs",{editchat});
+});
+app.put("/home/:id",async(req,res)=>{
+    let {id}=req.params;
+    let{newmessage}=req.body;
+    console.log(newmessage);
+
+    let chat =  await Chat.findByIdAndUpdate(id,{message:newmessage},{runValidators:true,new:true});
+    console.log(chat);
+    res.redirect("/home");
+})
+
+//delete post
+app.delete("/home/:id",async(req,res)=>{
+    let {id}=req.params;
+    let dchat = await Chat.findByIdAndDelete(id);
+    console.log(dchat);
     res.redirect("/home");
 })
