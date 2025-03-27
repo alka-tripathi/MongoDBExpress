@@ -7,13 +7,16 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <form action="/home/new" method="GET">
+        <button>New</button>
+    </form>
     <% for(let chat of chats){  %>
         <div class="box">
             <p id="name"><span>Name:</span><%= chat.name %></p>
           
             <img src="<%= chat.image %>" alt="User Photo">
             <p id="msg"><span>Message:</span><%= chat.message %></p>
+          
         </div>
      
    <%  }  %>
